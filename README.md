@@ -3,6 +3,8 @@ rudeman-ebooks
 
 Een hidden markov model twitter bot als grens van het universum
 
+Live op [rudeman_ebooks](https://twitter.com/rudeman_ebooks)
+
 Benodigdheden
 -------------
 
@@ -20,7 +22,7 @@ Benodigdheden
 Waarom?
 -------
 
-Dit is een heel simpel taalmodel waar iets minder onzinnige onzin uitkomt dat een volstrekt willekeurige. Maar dat ligt natuurlijk aan je corpus. Met python kan je makkelijk leuke kunstjes doen.
+Dit is een heel simpel taalmodel waar iets minder onzinnige onzin uitkomt dat een volstrekt willekeurige. Maar dat ligt natuurlijk aan je corpus. Met python kan je makkelijk leuke kunstjes doen. Geïnspireerd op horse_ebooks en jwz_ebooks.
 
 Hoe?
 ----
