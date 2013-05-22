@@ -28,6 +28,6 @@ Hoe?
 ----
 
 Elk woord krijgt een lijstje met welke woorden er na voorkomen in het corpus. Hierbij worden dubbelen gewoon toegevoegd. Als je dan een wilekeurig woord uit dat rijtje pakt om er achter te plakken, krijg je een mooie waarschijnlijkheidsverdeling.
-Dat betekent dat de kans op een woord `a` na woord `b` is 0 als `a` nooit na `b` voorkomt in het corpus, en anders `het aantal keren dat a na b voorkomt / het aantal woorden dat na b komt`.<br />
+Dat betekent: `p(a na b)` is `|a na b| / |b|`.<br />
 (...)<br />
 Grens van het universum.
