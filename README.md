@@ -10,10 +10,11 @@ Benodigdheden
 - python-twitter (https://github.com/bear/python-twitter)
 - Twitter API toegang (https://dev.twitter.com/apps) en 4 OAuth codes:
 
-> CONSUMER_KEY    = 'je-consumer-key'
-> CONSUMER_SECRET = 'je-consumer-secret'
-> ACCESS_KEY      = 'een-access-key'
-> ACCESS_SECRET   = 'een-access-secret'
+
+	CONSUMER_KEY    = 'je-consumer-key'
+	CONSUMER_SECRET = 'je-consumer-secret'
+	ACCESS_KEY      = 'een-access-key'
+	ACCESS_SECRET   = 'een-access-secret'
 
 
 Waarom?
