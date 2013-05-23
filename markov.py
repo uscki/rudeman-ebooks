@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Authors: Sjoerd Dost and Benno Kruit
+
 import random
 import time
 import os
@@ -23,6 +25,8 @@ def style_dict(filename):
     word_dict[''] = [tekst[0]]
     for i in range(len(tekst)-1):
         w = tekst[i]
+        # '>' indicates start of forum post, needs to be stripped of.
+        # also, as a possible starting word, map to ''
         if w[0] == '>':
             word_dict[''].append(w[1:])
         else:
@@ -34,10 +38,10 @@ def style_dict(filename):
     return word_dict
 
 
-def print_speech(style_dict, word):
-    """Given style_dict and start word, prints 100 random words.
+def generate_words(style_dict, word):
+    """Given style_dict and start word, generate 100 words via markov chain.
         Args: Dictionary
-        Returns: prints to screen
+        Returns: List of words
     """
     text = []
     for i in range(100):
@@ -51,6 +55,7 @@ def print_speech(style_dict, word):
 
 def main():
     """Rudeman-generator: Mimics style of Rudeman's forum posts.
+        Twitters as @rudeman_ebooks
         Args: void
         Returns : none
     """
@@ -61,9 +66,12 @@ def main():
                       access_token_key      = twittersecrets.ACCESS_KEY,
                       access_token_secret   = twittersecrets.ACCESS_SECRET)
 
+
+    # Twitter each 12 hours
     while True: 
 
-        to_print = print_speech(dict, '') #Start from empty string
+        # Generate a list of words
+        to_print = generate_words(dict, '') #Start from empty string
         charlist = []
         for w in to_print:
             for c in w:
@@ -72,6 +80,7 @@ def main():
             if len(charlist) > 140:
                 break
 
+        # Take less than 140 characters, stopping at the last interpunction
         i = 140
         interpunction = False
         while not interpunction and i > 0:
@@ -79,6 +88,7 @@ def main():
             if charlist[i] in ['"','.','!','?']:
                 interpunction = True
 
+        # If the tweet is sizable enough, tweet it, and count 12 hours.
         if i > 20:
             tweet = ''.join(charlist[:i+1])
             api.PostUpdate(tweet)
