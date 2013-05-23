@@ -27,6 +27,9 @@ Dit is een heel simpel taalmodel waar iets minder onzinnige onzin uitkomt dat ee
 Hoe?
 ----
 
+python markov.py [debug] <br />
+Debugstatement zorgt dat er niet getwitterd wordt en print elke 5 seconden een nieuwe uitspraak in de terminal.
+
 We bouwen een dictionary op die elk woord mapt naar een lijst van woorden die er (direct) op kunnen volgen in het corpus
 Hierbij worden dubbelen gewoon toegevoegd. Als je dan een wilekeurig woord uit dat rijtje pakt om er achter te plakken, krijg je een mooie waarschijnlijkheidsverdeling.
 Dat betekent: `p(a na b)` is `|a na b| / |b|`.<br />
