@@ -27,6 +27,8 @@ def style_dict(filename):
         w = tekst[i]
         # '>' indicates start of forum post, needs to be stripped off.
         # also, as a possible starting word, map to ''
+        if w[0] == '>':
+            w = w[1:]
         next = tekst[i+1]
         if next[0] == '>':
             next = next[1:]
