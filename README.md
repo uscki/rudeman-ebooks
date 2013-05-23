@@ -27,7 +27,9 @@ Dit is een heel simpel taalmodel waar iets minder onzinnige onzin uitkomt dat ee
 Hoe?
 ----
 
-Elk woord krijgt een lijstje met welke woorden er na voorkomen in het corpus. Hierbij worden dubbelen gewoon toegevoegd. Als je dan een wilekeurig woord uit dat rijtje pakt om er achter te plakken, krijg je een mooie waarschijnlijkheidsverdeling.
+We bouwen een dictionary op die elk woord mapt naar een lijst van woorden die er (direct) op kunnen volgen in het corpus
+Hierbij worden dubbelen gewoon toegevoegd. Als je dan een wilekeurig woord uit dat rijtje pakt om er achter te plakken, krijg je een mooie waarschijnlijkheidsverdeling.
 Dat betekent: `p(a na b)` is `|a na b| / |b|`.<br />
 (...)<br />
+Zie http://en.wikipedia.org/wiki/Parody_generator
 Grens van het universum.
