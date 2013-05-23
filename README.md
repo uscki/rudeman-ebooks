@@ -31,5 +31,5 @@ We bouwen een dictionary op die elk woord mapt naar een lijst van woorden die er
 Hierbij worden dubbelen gewoon toegevoegd. Als je dan een wilekeurig woord uit dat rijtje pakt om er achter te plakken, krijg je een mooie waarschijnlijkheidsverdeling.
 Dat betekent: `p(a na b)` is `|a na b| / |b|`.<br />
 (...)<br />
-Zie http://en.wikipedia.org/wiki/Parody_generator
+Zie http://en.wikipedia.org/wiki/Parody_generator <br />
 Grens van het universum.
