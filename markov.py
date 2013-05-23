@@ -23,12 +23,13 @@ def style_dict(filename):
     word_dict[''] = [tekst[0]]
     for i in range(len(tekst)-1):
         w = tekst[i]
-        if w in word_dict.keys():
-            word_dict[w].append(tekst[i+1])
+        if w[0] == '>':
+            word_dict[''].append(w[1:])
         else:
-            word_dict[w] = [tekst[i+1]]
-        if list(w)[0] == '>':
-            word_dict[''].append(w)
+            if w in word_dict.keys():
+                word_dict[w].append(tekst[i+1])
+            else:
+                word_dict[w] = [tekst[i+1]]        
 
     return word_dict
 
@@ -78,8 +79,8 @@ def main():
             if charlist[i] in ['"','.','!','?']:
                 interpunction = True
 
-        if i > 5:
-            tweet = re.sub('>', '', ''.join(charlist[:i+1]))
+        if i > 20:
+            tweet = ''.join(charlist[:i+1])
             api.PostUpdate(tweet)
             print tweet
             t = time.clock()
