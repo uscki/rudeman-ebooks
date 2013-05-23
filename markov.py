@@ -25,15 +25,16 @@ def style_dict(filename):
     word_dict[''] = [tekst[0]]
     for i in range(len(tekst)-1):
         w = tekst[i]
-        # '>' indicates start of forum post, needs to be stripped of.
+        # '>' indicates start of forum post, needs to be stripped off.
         # also, as a possible starting word, map to ''
-        if w[0] == '>':
-            word_dict[''].append(w[1:])
+        next = tekst[i+1]
+        if next[0] == '>':
+            next = next[1:]
+            word_dict[''].append(next)
+        if w in word_dict.keys():
+            word_dict[w].append(next)
         else:
-            if w in word_dict.keys():
-                word_dict[w].append(tekst[i+1])
-            else:
-                word_dict[w] = [tekst[i+1]]        
+            word_dict[w] = [next]        
 
     return word_dict
 
@@ -92,6 +93,7 @@ def main():
         if i > 20:
             tweet = ''.join(charlist[:i+1])
             api.PostUpdate(tweet)
+            print '-----------------------------------------------'
             print tweet
             t = time.clock()
             period = 43200
