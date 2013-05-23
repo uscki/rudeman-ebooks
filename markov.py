@@ -20,7 +20,19 @@ def style_dict(filename):
         Returns: dictionary of words with potential followings words
     """
     f = open(filename, 'r')
-    tekst = f.read().split()
+    rawtekst = f.read().split()
+    tekst = []
+    for word in rawtekst:
+        # Split op interpunctie
+        if not word[:4] == "http":
+            m = re.match('(.*)([.,?!\)\(])(.*)', word)
+            if m:
+                tekst.extend([x for x in list(m.groups()) if not x == ''])
+            else:
+                tekst.append(word)
+        else:
+            tekst.append(word)
+
     word_dict = {}
     word_dict[''] = [tekst[0][1:]]
     for i in range(len(tekst)-1):
@@ -38,7 +50,7 @@ def style_dict(filename):
             if w in word_dict.keys():
                 word_dict[w].append(next)
             else:
-                word_dict[w] = [next]        
+                word_dict[w] = [next]   
 
     return word_dict
 
@@ -72,16 +84,20 @@ def main():
                       access_token_secret   = twittersecrets.ACCESS_SECRET)
 
 
+    punct = ['"','.','!','?']
+
     # Twitter each 12 hours
     while True: 
 
         # Generate a list of words
         to_print = generate_words(dict, '') #Start from empty string
+
         charlist = []
-        for w in to_print:
+        for i, w in enumerate(to_print):
             for c in w:
                 charlist.append(c)
-            charlist.append(' ')
+            if i < len(to_print) and not to_print[i+1] in punct:
+                charlist.append(' ')
             if len(charlist) > 140:
                 break
 
@@ -90,7 +106,7 @@ def main():
         interpunction = False
         while not interpunction and i > 0:
             i -= 1
-            if charlist[i] in ['"','.','!','?']:
+            if charlist[i] in punct:
                 interpunction = True
 
         # If the tweet is sizable enough, tweet it, and count 12 hours.
