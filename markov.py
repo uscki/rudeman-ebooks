@@ -22,7 +22,7 @@ def style_dict(filename):
     f = open(filename, 'r')
     tekst = f.read().split()
     word_dict = {}
-    word_dict[''] = [tekst[0]]
+    word_dict[''] = [tekst[0][1:]]
     for i in range(len(tekst)-1):
         w = tekst[i]
         # '>' indicates start of forum post, needs to be stripped off.
@@ -30,13 +30,15 @@ def style_dict(filename):
         if w[0] == '>':
             w = w[1:]
         next = tekst[i+1]
-        if next[0] == '>':
-            next = next[1:]
-            word_dict[''].append(next)
-        if w in word_dict.keys():
-            word_dict[w].append(next)
-        else:
-            word_dict[w] = [next]        
+        parentheses = ['(',')']
+        if not next in parentheses and not w in parentheses:
+            if next[0] == '>':
+                next = next[1:]
+                word_dict[''].append(next)
+            if w in word_dict.keys():
+                word_dict[w].append(next)
+            else:
+                word_dict[w] = [next]        
 
     return word_dict
 
