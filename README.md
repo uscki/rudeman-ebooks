@@ -1,7 +1,7 @@
 rudeman-ebooks
 ==============
 
-Een hidden markov model twitter bot als grens van het universum
+Een markov chain twitter bot als grens van het universum
 
 Live op [rudeman_ebooks](https://twitter.com/rudeman_ebooks)
 
@@ -32,4 +32,4 @@ Hierbij worden dubbelen gewoon toegevoegd. Als je dan een wilekeurig woord uit d
 Dat betekent: `p(a na b)` is `|a na b| / |b|`.<br />
 (...)<br />
 Zie http://en.wikipedia.org/wiki/Parody_generator <br />
-Grens van het universum.
+Fijne feestdagen en het zonnestelsel.
