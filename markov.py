@@ -6,6 +6,7 @@ import random
 import time
 import os
 import re
+import sys
 import twitter # from https://github.com/bear/python-twitter
 import twittersecrets # contains keys and secrets
 
@@ -25,7 +26,7 @@ def style_dict(filename):
     for word in rawtekst:
         # Split op interpunctie
         if not word[:4] == "http":
-            m = re.match('(.*)([.,?!\)\(])(.*)', word)
+            m = re.match('(.*)([.,?!:;\)\(])(.*)', word)
             if m:
                 tekst.extend([x for x in list(m.groups()) if not x == ''])
             else:
@@ -84,7 +85,8 @@ def main():
                       access_token_secret   = twittersecrets.ACCESS_SECRET)
 
 
-    punct = ['"','.','!','?']
+    punct = ['"','.','!','?',')']
+    half_punct = [',', ':', ';','(']
 
     # Twitter each 12 hours
     while True: 
@@ -96,7 +98,7 @@ def main():
         for i, w in enumerate(to_print):
             for c in w:
                 charlist.append(c)
-            if i < len(to_print) and not to_print[i+1] in punct:
+            if i < len(to_print) and not to_print[i+1] in punct+half_punct:
                 charlist.append(' ')
             if len(charlist) > 140:
                 break
@@ -112,11 +114,14 @@ def main():
         # If the tweet is sizable enough, tweet it, and count 12 hours.
         if i > 20:
             tweet = ''.join(charlist[:i+1])
-            api.PostUpdate(tweet)
-            print '-----------------------------------------------'
+            period = 5
+            if len(sys.argv) == 1:
+                api.PostUpdate(tweet)
+                period = 43200
+            elif sys.argv[1] == "debug":
+                print '-----------------------------------------------'
             print tweet
             t = time.clock()
-            period = 43200
             while True:
                 if (time.clock() - t > period):
                     break
